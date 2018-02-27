@@ -1,0 +1,21 @@
+{% extends 'web_mvc/base.html' %}
+{% load tz %}
+
+{% block content %}
+    <h3>Projects</h3>
+        {% for post in posts %}
+            <div>
+                {% if post.front_image %}
+                    <img src="{{ post.front_image.url }}" width="500px"/>
+                    <p><small><i>Source: Internet</i></small></p>
+                {% endif %}
+                <p><h3>{{ post.title }}</h3></p>
+                <p><h4>Created on: {{ post.created_date|localtime }}</h4></p>
+                <p>{{ post.text | linebreaksbr }}</p>
+                <p>Author: {{ post.author.name }}</p>
+                <p>Support contributions in total: {{ post.contributions }} $Value$</p>
+                <p>Contributors: {{ post.contributors }}</p>
+                <br/>
+            </div>
+        {% endfor %}
+{% endblock %}
